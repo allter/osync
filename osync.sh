@@ -2130,7 +2130,7 @@ ENDSSH
 Logger "DELETE_CMD_INPUT: $DELETE_CMD_INPUT" "DEBUG"
 Logger "DELETE_CMD: ${DELETE_CMD[*]}" "DEBUG"
 
-	printf "%s" $DELETE_CMD_INPUT | ${DELETE_CMD[*]} > "$RUN_DIR/$PROGRAM.remote_deletion.$SCRIPT_PID" 2>&1 &
+	printf "%s" "$DELETE_CMD_INPUT" | ${DELETE_CMD[*]} > "$RUN_DIR/$PROGRAM.remote_deletion.$SCRIPT_PID" 2>&1 &
 
 	## Need to add a trivial sleep time to give ssh time to log to local file
 	sleep 5
