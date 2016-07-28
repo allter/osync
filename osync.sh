@@ -2097,7 +2097,7 @@ local DELETE_CMD_INPUT=$(cat << 'ENDSSH'
 							$COMMAND_SUDO mkdir -p "$REPLICA_DIR$DELETE_DIR/$parentdir"
 							$COMMAND_SUDO mv -f "$REPLICA_DIR$files" "$REPLICA_DIR$DELETE_DIR/$parentdir"
 						else
-							$COMMAND_SUDO mv -f "$REPLICA_DIR$files" "$REPLICA_DIR$DELETE_DIR"1
+							$COMMAND_SUDO mv -f "$REPLICA_DIR$files" "$REPLICA_DIR$DELETE_DIR"
 						fi
 						if [ $? != 0 ]; then
 							Logger "Cannot move $REPLICA_DIR$files to deletion directory." "ERROR"
