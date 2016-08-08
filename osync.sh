@@ -1463,8 +1463,10 @@ function CheckDiskSpace {
 function _WriteLockFilesLocal {
 	local lockfile="${1}"
 
+	(
 	set -o noclobber
 	$COMMAND_SUDO echo "$SCRIPT_PID@$INSTANCE_ID" > "$lockfile"
+	)
 	if [ $?	!= 0 ]; then
 		Logger "Could not create lock file [$lockfile]." "CRITICAL"
 		exit 1
