@@ -1480,7 +1480,13 @@ function _WriteLockFilesRemote {
 	CheckConnectivity3rdPartyHosts
 	CheckConnectivityRemoteHost
 
-	cmd=$SSH_CMD' "echo '$SCRIPT_PID@$INSTANCE_ID' | '$COMMAND_SUDO' tee \"'$lockfile'\"" > /dev/null 2>&1'
+	cmd=$SSH_CMD' "if [ \"x$COMMAND_SUDO\" = \"x\" ];
+		then
+			set -o noclobber;
+			echo '$SCRIPT_PID@$INSTANCE_ID' > \"'$lockfile'\";
+		else
+			echo '$SCRIPT_PID@$INSTANCE_ID' | '$COMMAND_SUDO' tee \"'$lockfile'\";
+		fi" > /dev/null 2>&1'
 	Logger "cmd: $cmd" "DEBUG"
 	eval "$cmd" &
 	WaitForTaskCompletion $! 720 1800 ${FUNCNAME[0]}
